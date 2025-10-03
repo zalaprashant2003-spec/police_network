@@ -1,0 +1,64 @@
+﻿@* @model WebApplication1.Models.FIRViewModel
+
+@{
+    ViewData["Title"] = "FIR Details";
+}
+
+<h2>FIR Details</h2>
+
+<div class="mb-3">
+    <label>Complaint Type:</label>
+    <p>@Model.ComplaintType</p>
+</div>
+
+<div class="mb-3">
+    <label>Description:</label>
+    <p>@Model.Description</p>
+</div>
+
+<div class="mb-3">
+    <label>Incident Date:</label>
+    <p>@Model.IncidentDate.ToString("yyyy-MM-dd")</p>
+</div>
+
+<div class="mb-3">
+    <label>Filed Date:</label>
+    <p>@Model.FiledDate.ToString("yyyy-MM-dd")</p>
+</div>
+
+<div class="mb-3">
+    <label>Status:</label>
+    <p>@Model.Status</p>
+</div>
+
+<a class="btn btn-secondary" href="@Url.Action("Index")">Back to List</a> *@
+@model WebApplication1.Models.FIRViewModel
+
+@{
+    ViewData["Title"] = "FIR Details";
+}
+
+<h2>FIR Details</h2>
+
+<div class="mb-3"><label>Name:</label><p>@Model.Name</p></div>
+<div class="mb-3"><label>Age:</label><p>@Model.Age</p></div>
+<div class="mb-3"><label>Gender:</label><p>@Model.Gender</p></div>
+<div class="mb-3"><label>Contact No:</label><p>@Model.ContactNo</p></div>
+<div class="mb-3"><label>Address:</label><p>@Model.Address</p></div>
+<div class="mb-3"><label>Complaint Type:</label><p>@Model.ComplaintType</p></div>
+<div class="mb-3"><label>Description:</label><p>@Model.Description</p></div>
+<div class="mb-3"><label>Incident Date:</label><p>@Model.IncidentDate.ToString("yyyy-MM-dd")</p></div>
+<div class="mb-3"><label>Filed Date:</label><p>@Model.FiledDate.ToString("yyyy-MM-dd")</p></div>
+<div class="mb-3"><label>Status:</label><p>@Model.Status</p></div>
+
+<div class="mb-3">
+    <label>Thieves:</label>
+    <ul>
+        @foreach (var thief in Model.Thieves)
+        {
+            <li>@thief</li>
+        }
+    </ul>
+</div>
+
+<a class="btn btn-secondary" href="@Url.Action("Index")">Back to List</a>

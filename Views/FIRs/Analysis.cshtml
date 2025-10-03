@@ -1,0 +1,74 @@
+﻿@model WebApplication1.Models.FIRAnalysisViewModel
+
+<h2 class="mb-4 text-dark">FIR Analysis Dashboard</h2>
+
+<div class="row mb-4">
+    <!-- Total FIRs -->
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <h6 class="card-title text-muted">Total FIRs</h6>
+                <p class="h3 fw-bold">@Model.TotalFIRs</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- FIRs by Status -->
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-header bg-light">
+                <strong>FIRs by Status</strong>
+            </div>
+            <ul class="list-group list-group-flush">
+                @foreach (var item in Model.ByStatus)
+                {
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>@item.Key</span>
+                        <span class="text-muted">@item.Value</span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <!-- FIRs by Complaint Type -->
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-header bg-light">
+                <strong>FIRs by Complaint Type</strong>
+            </div>
+            <ul class="list-group list-group-flush">
+                @foreach (var item in Model.ByComplaintType)
+                {
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>@item.Key</span>
+                        <span class="text-muted">@item.Value</span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- FIRs by Gender -->
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-header bg-light">
+                <strong>FIRs by Gender</strong>
+            </div>
+            <ul class="list-group list-group-flush">
+                @foreach (var item in Model.ByGender)
+                {
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>@item.Key</span>
+                        <span class="text-muted">@item.Value</span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

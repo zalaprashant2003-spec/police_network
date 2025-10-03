@@ -1,0 +1,53 @@
+﻿@model List<WebApplication1.Models.FIRViewModel>
+
+@{
+    ViewData["Title"] = "FIRs";
+    var userRole = ViewBag.UserRole as string ?? "Guest"; // fallback to Guest
+}
+
+<h2>FIRs</h2>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create")">Create New FIR</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Contact No</th>
+            <th>Complaint Type</th>
+            <th>Incident Date</th>
+            <th>Filed Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var fir in Model)
+        {
+            <tr>
+                <td>@fir.Name</td>
+                <td>@fir.Age</td>
+                <td>@fir.Gender</td>
+                <td>@fir.ContactNo</td>
+                <td>@fir.ComplaintType</td>
+                <td>@fir.IncidentDate.ToString("yyyy-MM-dd")</td>
+                <td>@fir.FiledDate.ToString("yyyy-MM-dd")</td>
+                <td>@fir.Status</td>
+                <td>
+                    <a class="btn btn-sm btn-info" href="@Url.Action("Details", new { id = fir.Id })">Details</a>
+
+                    @* Only show Edit/Delete if user is Police *@
+                    @if (userRole == "Police")
+                    {
+                        <a class="btn btn-sm btn-warning" href="@Url.Action("Edit", new { id = fir.Id })">Edit</a>
+                        <a class="btn btn-sm btn-danger" href="@Url.Action("Delete", new { id = fir.Id })">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
