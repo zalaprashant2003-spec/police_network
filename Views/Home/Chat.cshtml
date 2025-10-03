@@ -1,0 +1,24 @@
+﻿@model List<WebApplication1.Models.Msg>
+<h2>Chat with @ViewBag.ChatWith</h2>
+
+<div>
+    @foreach (var m in Model)
+    {
+        <div>
+            <strong>@m.sender:</strong> @m.message
+            @if (m.Latitude.HasValue && m.Longitude.HasValue)
+            {
+                <div>
+                    <small>
+                        Location:
+                        <a href="https://www.google.com/maps?q=@m.Latitude,@m.Longitude"
+                           target="_blank">
+                            View on Map
+                        </a>
+                    </small>
+                </div>
+            }
+
+        </div>
+    }
+</div>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WebApplication1.Models.Msg>
+
+@{
+    ViewData["Title"] = "Inbox";
+}
+<script>
+    setInterval(function () {
+        location.reload();
+    }, 5000); // reload every 5 seconds
+</script>
+
+<h2>Your Inbox</h2>
+
+@if (!Model.Any())
+{
+    <p>No messages received yet.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>From</th>
+                <th>Message</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var msg in Model)
+            {
+                <tr>
+                    <td>@msg.sender</td>
+                    <td>@msg.message</td>
+                    <td>
+                        @if (msg.Latitude.HasValue && msg.Longitude.HasValue)
+                        {
+                            <a href="https://www.google.com/maps?q=@msg.Latitude,@msg.Longitude" target="_blank">
+                                View Location
+                            </a>
+                        }
+                        else
+                        {
+                            <span>N/A</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
