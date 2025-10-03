@@ -1,0 +1,51 @@
+﻿@model WebApplication1.Models.Police
+
+@{
+    ViewData["Title"] = "Create Police";
+    var userRole = ViewBag.UserRole as string ?? "Guest";
+
+    if (userRole != "Admin")
+    {
+        <text>
+            <script>
+                window.location.href = '@Url.Action("Index", "Home")';
+            </script>
+        </text>
+        return;
+    }
+
+    var users = ViewBag.Users as List<Microsoft.AspNetCore.Identity.IdentityUser>;
+}
+
+<h2>Create Police</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<form asp-action="Create" method="post">
+    <div class="form-group mb-3">
+        <label>Select User</label>
+        <select name="selectedUserId" class="form-select">
+            <option value="">-- Select User --</option>
+            @foreach (var user in users)
+            {
+                <option value="@user.Id">@user.UserName (@user.Email)</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Phone No</label>
+        <input type="text" name="PhoneNo" class="form-control" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Place</label>
+        <input type="text" name="Place" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

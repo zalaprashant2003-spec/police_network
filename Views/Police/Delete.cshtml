@@ -1,0 +1,46 @@
+﻿@model WebApplication1.Models.Police
+
+@{
+    ViewData["Title"] = "Delete Police";
+    var userRole = ViewBag.UserRole as string ?? "Guest";
+
+    // Redirect if user is not Police
+    if (userRole != "Admin")
+    {
+        <text>
+            <script>
+                window.location.href = '@Url.Action("Index", "Home")';
+            </script>
+        </text>
+        return;
+    }
+}
+<h2>Delete Police</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<h4>Are you sure you want to delete this police record?</h4>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <th>Phone No</th>
+        <td>@Model.PhoneNo</td>
+    </tr>
+    <tr>
+        <th>Place</th>
+        <td>@Model.Place</td>
+    </tr>
+</table>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

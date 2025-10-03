@@ -1,0 +1,61 @@
+﻿@model WebApplication1.Models.Police
+
+@{
+    ViewData["Title"] = "Edit Police";
+    var userRole = ViewBag.UserRole as string ?? "Guest";
+
+    if (userRole != "Admin")
+    {
+        <text>
+            <script>
+                window.location.href = '@Url.Action("Index", "Home")';
+            </script>
+        </text>
+        return;
+    }
+
+    var users = ViewBag.Users as List<Microsoft.AspNetCore.Identity.IdentityUser>;
+}
+
+<h2>Edit Police</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+
+    <div class="form-group mb-3">
+        <label>Select User</label>
+        <select name="selectedUserId" class="form-select">
+            <option value="">-- Select User --</option>
+            @foreach (var user in users)
+            {
+                if (user.UserName == Model.Name)
+                {
+                    <option value="@user.Id" selected>@user.UserName (@user.Email)</option>
+                }
+                else
+                {
+                    <option value="@user.Id">@user.UserName (@user.Email)</option>
+                }
+            }
+        </select>
+
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Phone No</label>
+        <input type="text" name="PhoneNo" value="@Model.PhoneNo" class="form-control" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Place</label>
+        <input type="text" name="Place" value="@Model.Place" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

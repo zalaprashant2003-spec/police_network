@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebApplication1.Models.Police>
+
+@{
+    ViewData["Title"] = "Police List";
+    var userRole = ViewBag.UserRole as string ?? "Guest";
+}
+
+<h2>Police List</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+@if (userRole == "Admin")
+{
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Add New Police</a>
+    </p>
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone No</th>
+            <th>Place</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var police in Model)
+        {
+            <tr>
+                <td>@police.Name</td>
+                <td>@police.PhoneNo</td>
+                <td>@police.Place</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@police.Id" class="btn btn-info btn-sm">Details</a>
+
+                    @* Only Admin can edit/delete *@
+                    @if (userRole == "Admin")
+                    {
+                        <a asp-action="Edit" asp-route-id="@police.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@police.Id" class="btn btn-danger btn-sm">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
