@@ -1,0 +1,45 @@
+﻿@model WebApplication1.Models.ThiefViewModel
+
+@{
+    ViewData["Title"] = "Edit Thief";
+    var userRole = ViewBag.UserRole as string ?? "";
+}
+
+@if (userRole == "Police")
+{
+    <h2>Edit Thief</h2>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ThiefPlaceAsOfNow" class="form-label"></label>
+            <input asp-for="ThiefPlaceAsOfNow" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="AdmittedTime" class="form-label"></label>
+            <input asp-for="AdmittedTime" type="date" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ReleaseTime" class="form-label"></label>
+            <input asp-for="ReleaseTime" type="date" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-secondary" href="@Url.Action("Index")">Cancel</a>
+    </form>
+}
+else
+{
+    <script>
+        // Redirect unauthorized users to Home page
+        window.location.href = '@Url.Action("Index", "Home")';
+    </script>
+}

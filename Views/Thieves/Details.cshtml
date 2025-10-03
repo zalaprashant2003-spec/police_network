@@ -1,0 +1,29 @@
+﻿@model WebApplication1.Models.ThiefViewModel
+
+@{
+    ViewData["Title"] = "Thief Details";
+}
+
+<h2>Thief Details</h2>
+
+<div class="mb-3">
+    <label>Name:</label>
+    <p>@Model.Name</p>
+</div>
+
+<div class="mb-3">
+    <label>Current Place:</label>
+    <p>@Model.ThiefPlaceAsOfNow</p>
+</div>
+
+<div class="mb-3">
+    <label>Admitted Time:</label>
+    <p>@Model.AdmittedTime.ToString("yyyy-MM-dd")</p>
+</div>
+
+<div class="mb-3">
+    <label>Release Time:</label>
+    <p>@Model.ReleaseTime?.ToString("yyyy-MM-dd")</p>
+</div>
+
+<a class="btn btn-secondary" href="@Url.Action("Index")">Back to List</a>

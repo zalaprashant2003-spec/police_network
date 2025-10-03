@@ -1,0 +1,33 @@
+﻿@model WebApplication1.Models.ThiefViewModel
+
+@{
+    ViewData["Title"] = "Delete Thief";
+    var userRole = ViewBag.UserRole as string ?? "";
+}
+
+@if (userRole == "Police")
+{
+    <h2>Delete Thief</h2>
+
+    <h4>Are you sure you want to delete this Thief?</h4>
+
+    <div>
+        <p><strong>Name:</strong> @Model.Name</p>
+        <p><strong>Current Place:</strong> @Model.ThiefPlaceAsOfNow</p>
+        <p><strong>Admitted Time:</strong> @Model.AdmittedTime.ToString("yyyy-MM-dd")</p>
+        <p><strong>Release Time:</strong> @Model.ReleaseTime?.ToString("yyyy-MM-dd")</p>
+    </div>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a class="btn btn-secondary" href="@Url.Action("Index")">Cancel</a>
+    </form>
+}
+else
+{
+    <script>
+        // Redirect unauthorized users to Home page
+        window.location.href = '@Url.Action("Index", "Home")';
+    </script>
+}

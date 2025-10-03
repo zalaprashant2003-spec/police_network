@@ -1,0 +1,47 @@
+﻿@model List<WebApplication1.Models.ThiefViewModel>
+
+@{
+    ViewData["Title"] = "Thieves";
+    var userRole = ViewBag.UserRole as string ?? "";
+}
+
+<h2>Thieves</h2>
+
+@if (userRole == "Police")
+{
+    <p>
+        <a class="btn btn-primary" href="@Url.Action("Create")">Create New Thief</a>
+    </p>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Current Place</th>
+            <th>Admitted Time</th>
+            <th>Release Time</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var thief in Model)
+        {
+            <tr>
+                <td>@thief.Name</td>
+                <td>@thief.ThiefPlaceAsOfNow</td>
+                <td>@thief.AdmittedTime.ToString("yyyy-MM-dd")</td>
+                <td>@thief.ReleaseTime?.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a class="btn btn-sm btn-info" href="@Url.Action("Details", new { id = thief.Id })">Details</a>
+
+                    @if (userRole == "Police")
+                    {
+                        <a class="btn btn-sm btn-warning" href="@Url.Action("Edit", new { id = thief.Id })">Edit</a>
+                        <a class="btn btn-sm btn-danger" href="@Url.Action("Delete", new { id = thief.Id })">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
