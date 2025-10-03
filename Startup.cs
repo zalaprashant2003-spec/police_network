@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using AutoMapper;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.Data;
@@ -45,6 +46,9 @@ namespace WebApplication1
 
             // Register repository for Msg
             services.AddScoped<IMsgRepository, SQLMsgRepository>();
+            services.AddScoped<IPoliceRepository, SQLPoliceRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWorkRepository>();
+            services.AddAutoMapper(typeof(Helper));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
