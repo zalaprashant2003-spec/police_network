@@ -19,7 +19,7 @@ This project solves that problem by allowing citizens to send a direct message t
 - Each message contains sender details, receiver details, message content, and location.
 - Location can be detected automatically for accuracy.
 - Police can view messages in real-time and take necessary actions.
-- Users can also file FIRs and track updates.
+- Users can also file FIRs(First Information Report) and track updates.
 - Admin can manage police and thieves(Crimanals) information.
 - Dashboard provides analysis of FIRs by type, status, and gender.
 
@@ -31,9 +31,19 @@ This project solves that problem by allowing citizens to send a direct message t
 - Analysis Module: Provides statistics on FIRs for better decision-making.
 
 #Setup Instructions
-- For Admin we keep ''(); First Register with this ID for Admin and after login Admin can add Police details.
+- For Admin we keep 'Admin@123gmail.com' (In "/Controllers/HomeController.cs"); First Register with this ID for Admin and after login Admin can add Police details.
 - After Police login;Poluce can add criminal's details and modify FIR status(Pending to Sucess).
 - User can Report FIR and see status of that FIR.
+- Refer "Features" portion of README.md(in this file above) for more information.
+
+#Team Members and Individual contributions
+- Vahora Atik_CE154 :
+    - Messages Module, Police Module, Analysis Module.
+
+- Zala Prashant_CE160 :
+    - FIR Module, Thieves Module,Inbox
 
 
-Note: Here you refer thief as a any crminal, not only crime of thief
+Note: 
+- Here you refer thief as a any crminal, not only crime of thief.
+- Please Allow location for Send Message on your machine.
