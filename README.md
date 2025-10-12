@@ -30,4 +30,10 @@ This project solves that problem by allowing citizens to send a direct message t
 - Thieves Module: Admin tracks criminals and their status.
 - Analysis Module: Provides statistics on FIRs for better decision-making.
 
+#Setup Instructions
+- For Admin we keep ''(); First Register with this ID for Admin and after login Admin can add Police details.
+- After Police login;Poluce can add criminal's details and modify FIR status(Pending to Sucess).
+- User can Report FIR and see status of that FIR.
+
+
 Note: Here you refer thief as a any crminal, not only crime of thief
